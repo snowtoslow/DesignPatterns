@@ -2,7 +2,6 @@ package models
 
 import (
 	"DesignPatterns/creational-design-patterns/factory"
-	"DesignPatterns/creational-design-patterns/prototype"
 )
 
 type King struct {
@@ -19,16 +18,13 @@ func (k *King) GetFighter() Fighter {
 	}
 }
 
-func (k *King) GetWeapon() factory.IWeapon {
-	return k.Weapon
+func (k *King) GetWeapon(w string) (err error) {
+	k.Weapon, err = factory.GetWeapon(w)
+	return nil
 }
 
 func (k *King) GetRole() string {
 	return k.Role
-}
-
-func (k *King) SetWeapon(s string) {
-	k.Weapon.SetName(s)
 }
 
 func (k *King) SetName(s string) {
@@ -41,10 +37,4 @@ func (k *King) SetRole(s string) {
 
 func (k *King) GetName() string {
 	return k.Name
-}
-
-func (k *King) Clone() prototype.ClonePrototyper {
-	return &King{Name: k.Name + "_clone",
-		Role:   k.Role + "_clone",
-		Weapon: k.Weapon}
 }

@@ -6,11 +6,21 @@ import (
 )
 
 func main() {
-
+	//Builder
 	kingBuilder := builder.GetBuilder("king")
-	player := builder.NewPlayer(kingBuilder)
+	magicianBuilder := builder.GetBuilder("magician")
 
-	ourShit := player.BuildFighter("Arthur", "King", "sword")
+	newPlayerKing := builder.NewPlayer(kingBuilder)
+	newPlayerMagician := builder.NewPlayer(magicianBuilder)
 
-	log.Println(ourShit.Weapon, ourShit.Role, ourShit.Name)
+	//Here we build fighters
+	kingFighter := newPlayerKing.BuildFighter("Arthur", "King", "sword")
+	magicianFighter := newPlayerMagician.BuildFighter("Gearalt", "Magician", "theurgy")
+
+	log.Println("King:", kingFighter.Weapon.GetName(), kingFighter.Role, kingFighter.Name)
+	log.Println("Magician:", magicianFighter.Weapon.GetName(), magicianFighter.Name, magicianFighter.Role)
+
+	log.Println("King clone:", kingFighter.Clone())
+	log.Println("Magician clone:", magicianFighter.Clone())
+
 }

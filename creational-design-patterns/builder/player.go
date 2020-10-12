@@ -1,6 +1,9 @@
 package builder
 
-import "DesignPatterns/creational-design-patterns/models"
+import (
+	"DesignPatterns/creational-design-patterns/models"
+	"log"
+)
 
 type Player struct {
 	builder IBuilder
@@ -16,9 +19,11 @@ func (p *Player) SetBuilder(builder IBuilder) {
 	p.builder = builder
 }
 
-func (p *Player) BuildFighter(name string, role string, weapon string) models.Fighter {
+func (p *Player) BuildFighter(name string, role string, weaponName string) models.Fighter {
 	p.builder.SetName(name)
 	p.builder.SetRole(role)
-	p.builder.SetWeapon(weapon)
+	if err := p.builder.GetWeapon(weaponName); err != nil {
+		log.Println(err)
+	}
 	return p.builder.GetFighter()
 }

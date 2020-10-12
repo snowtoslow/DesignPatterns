@@ -2,7 +2,6 @@ package models
 
 import (
 	"DesignPatterns/creational-design-patterns/factory"
-	"DesignPatterns/creational-design-patterns/prototype"
 )
 
 type KnightBuilder struct {
@@ -22,33 +21,23 @@ func (k KnightBuilder) GetFighter() Fighter {
 		Weapon: k.Weapon,
 	}
 }
-
-func (k KnightBuilder) SetWeapon(s string) {
-	panic("implement me")
-}
-
-func (k KnightBuilder) GetWeapon() factory.IWeapon {
-	panic("implement me")
+func (k *KnightBuilder) GetWeapon(w string) (err error) {
+	k.Weapon, err = factory.GetWeapon(w)
+	return
 }
 
 func (k KnightBuilder) GetRole() string {
-	panic("implement me")
+	return k.Role
 }
 
 func (k KnightBuilder) SetName(s string) {
-	panic("implement me")
+	k.Name = s
 }
 
 func (k KnightBuilder) SetRole(s string) {
-	panic("implement me")
+	k.Role = s
 }
 
 func (k KnightBuilder) GetName() string {
-	panic("implement me")
-}
-
-func (k *KnightBuilder) Clone() prototype.ClonePrototyper {
-	return &KnightBuilder{Name: k.Name + "_clone",
-		Role:   k.Role + "_clone",
-		Weapon: k.Weapon}
+	return k.GetName()
 }

@@ -1,7 +1,6 @@
 package builder
 
 import (
-	"DesignPatterns/creational-design-patterns/factory"
 	"DesignPatterns/creational-design-patterns/models"
 )
 
@@ -10,8 +9,7 @@ type IBuilder interface {
 	SetRole(string)
 	GetRole() string
 	GetName() string
-	SetWeapon(string)
-	GetWeapon() factory.IWeapon
+	GetWeapon(string) error
 	GetFighter() models.Fighter
 }
 

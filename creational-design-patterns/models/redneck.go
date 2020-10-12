@@ -2,7 +2,6 @@ package models
 
 import (
 	"DesignPatterns/creational-design-patterns/factory"
-	"DesignPatterns/creational-design-patterns/prototype"
 )
 
 type RedNeckBuilder struct {
@@ -15,7 +14,7 @@ func NewRedNeckBuilder() *RedNeckBuilder {
 	return &RedNeckBuilder{}
 }
 
-func (r RedNeckBuilder) GetFighter() Fighter {
+func (r *RedNeckBuilder) GetFighter() Fighter {
 	return Fighter{
 		Name:   r.Name,
 		Role:   r.Role,
@@ -23,32 +22,23 @@ func (r RedNeckBuilder) GetFighter() Fighter {
 	}
 }
 
-func (r RedNeckBuilder) SetWeapon(s string) {
-	r.Weapon.SetName(s)
+func (r *RedNeckBuilder) GetWeapon(w string) (err error) {
+	r.Weapon, err = factory.GetWeapon(w)
+	return
 }
 
-func (r RedNeckBuilder) GetWeapon() factory.IWeapon {
-	return r.Weapon
-}
-
-func (r RedNeckBuilder) GetRole() string {
+func (r *RedNeckBuilder) GetRole() string {
 	return r.Role
 }
 
-func (r RedNeckBuilder) SetRole(s string) {
+func (r *RedNeckBuilder) SetRole(s string) {
 	r.Role = s
 }
 
-func (r RedNeckBuilder) SetName(s string) {
+func (r *RedNeckBuilder) SetName(s string) {
 	r.Name = s
 }
 
-func (r RedNeckBuilder) GetName() string {
+func (r *RedNeckBuilder) GetName() string {
 	return r.Name
-}
-
-func (r *RedNeckBuilder) Clone() prototype.ClonePrototyper {
-	return &RedNeckBuilder{Name: r.Name + "_clone",
-		Role:   r.Role + "_clone",
-		Weapon: r.Weapon}
 }
