@@ -2,6 +2,7 @@ package builder
 
 import (
 	"DesignPatterns/creational-design-patterns/models"
+	"DesignPatterns/structurale-design-patterns/adapter"
 	"log"
 )
 
@@ -13,6 +14,10 @@ func NewPlayer(builder IBuilder) *Player {
 	return &Player{
 		builder: builder,
 	}
+}
+
+func (p *Player) ChangeFighterRole(changer adapter.RoleChanger, newRole string) {
+	changer.ChangeFighterRole(newRole)
 }
 
 func (p *Player) SetBuilder(builder IBuilder) {

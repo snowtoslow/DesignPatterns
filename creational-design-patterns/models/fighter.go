@@ -11,8 +11,13 @@ type Fighter struct {
 	Name   string
 }
 
+func (f *Fighter) ChangeFighterRole(newRoleName string) {
+	f.Role = newRoleName
+}
+
 func (f *Fighter) Clone() prototype.ClonePrototyper {
-	return &Fighter{Name: f.Name + "_clone",
+	return &Fighter{
+		Name:   f.Name + "_clone",
 		Role:   f.Role + "_clone",
 		Weapon: f.Weapon,
 	}
