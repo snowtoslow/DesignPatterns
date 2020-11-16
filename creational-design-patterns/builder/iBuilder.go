@@ -1,6 +1,7 @@
 package builder
 
 import (
+	"DesignPatterns/creational-design-patterns/factory"
 	"DesignPatterns/creational-design-patterns/models"
 )
 
@@ -11,6 +12,7 @@ type IBuilder interface {
 	GetName() string
 	GetWeapon(string) error
 	GetFighter() models.Fighter
+	SetWeapon(weapon factory.IWeapon)
 }
 
 func GetBuilder(builderType string) IBuilder {

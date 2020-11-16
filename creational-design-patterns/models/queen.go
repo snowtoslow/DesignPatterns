@@ -5,9 +5,11 @@ import (
 )
 
 type QueenBuilder struct {
-	Role   string
-	Weapon factory.IWeapon
-	Name   string
+	Role     string
+	Weapon   factory.IWeapon
+	Name     string
+	King     King
+	Magician []MagicianBuilder
 }
 
 func NewQueenBuilder() *QueenBuilder {
@@ -19,7 +21,7 @@ func (q *QueenBuilder) GetFighter() Fighter {
 }
 
 func (q *QueenBuilder) GetWeapon(w string) (err error) {
-	q.Weapon, err = factory.GetWeapon(w)
+	q.Weapon, err = factory.GetWeaponFactorySingleInstance().GetWeapon(w)
 	return
 }
 
@@ -37,4 +39,8 @@ func (q *QueenBuilder) SetName(s string) {
 
 func (q *QueenBuilder) GetName() string {
 	return q.Name
+}
+
+func (q *QueenBuilder) SetWeapon(weapon factory.IWeapon) {
+	q.Weapon = weapon
 }

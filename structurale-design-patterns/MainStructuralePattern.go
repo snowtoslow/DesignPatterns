@@ -2,6 +2,7 @@ package main
 
 import (
 	"DesignPatterns/creational-design-patterns/builder"
+	"DesignPatterns/creational-design-patterns/factory"
 	"DesignPatterns/structurale-design-patterns/adapter"
 	"DesignPatterns/structurale-design-patterns/decorator"
 	"log"
@@ -39,5 +40,11 @@ func main() {
 	newPlayerKing.ChangeFighterRole(&fighterAdapter, "Queen")
 
 	log.Printf("Role of fighter after changes: %s", fighter)
+
+	weaponFactoryInstance := factory.GetWeaponFactorySingleInstance()
+	log.Println(weaponFactoryInstance.WeaponFactory)
+	/*for k,v := range weaponFactoryInstance.WeaponFactory{
+		log.Println(k,v)
+	}*/
 
 }

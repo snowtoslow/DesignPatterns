@@ -1,6 +1,7 @@
 package builder
 
 import (
+	"DesignPatterns/creational-design-patterns/factory"
 	"DesignPatterns/creational-design-patterns/models"
 	"DesignPatterns/structurale-design-patterns/adapter"
 	"log"
@@ -27,8 +28,12 @@ func (p *Player) SetBuilder(builder IBuilder) {
 func (p *Player) BuildFighter(name string, role string, weaponName string) models.Fighter {
 	p.builder.SetName(name)
 	p.builder.SetRole(role)
-	if err := p.builder.GetWeapon(weaponName); err != nil {
+
+	if weapon, err := factory.GetWeaponFactorySingleInstance().GetWeapon(weaponName); err != nil {
 		log.Println(err)
+	} else {
+		p.builder.SetWeapon(weapon)
 	}
+
 	return p.builder.GetFighter()
 }

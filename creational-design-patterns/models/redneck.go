@@ -23,7 +23,7 @@ func (r *RedNeckBuilder) GetFighter() Fighter {
 }
 
 func (r *RedNeckBuilder) GetWeapon(w string) (err error) {
-	r.Weapon, err = factory.GetWeapon(w)
+	r.Weapon, err = factory.GetWeaponFactorySingleInstance().GetWeapon(w)
 	return
 }
 
@@ -41,4 +41,8 @@ func (r *RedNeckBuilder) SetName(s string) {
 
 func (r *RedNeckBuilder) GetName() string {
 	return r.Name
+}
+
+func (r *RedNeckBuilder) SetWeapon(weapon factory.IWeapon) {
+	r.Weapon = weapon
 }

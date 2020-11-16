@@ -19,7 +19,7 @@ func (k *King) GetFighter() Fighter {
 }
 
 func (k *King) GetWeapon(w string) (err error) {
-	k.Weapon, err = factory.GetWeapon(w)
+	k.Weapon, err = factory.GetWeaponFactorySingleInstance().GetWeapon(w)
 	return nil
 }
 
@@ -37,4 +37,8 @@ func (k *King) SetRole(s string) {
 
 func (k *King) GetName() string {
 	return k.Name
+}
+
+func (k *King) SetWeapon(weapon factory.IWeapon) {
+	k.Weapon = weapon
 }

@@ -5,9 +5,10 @@ import (
 )
 
 type KnightBuilder struct {
-	Role   string
-	Weapon factory.IWeapon
-	Name   string
+	Role     string
+	Weapon   factory.IWeapon
+	Name     string
+	RedNecks []RedNeckBuilder
 }
 
 func NewKnightBuilder() *KnightBuilder {
@@ -22,7 +23,7 @@ func (k KnightBuilder) GetFighter() Fighter {
 	}
 }
 func (k *KnightBuilder) GetWeapon(w string) (err error) {
-	k.Weapon, err = factory.GetWeapon(w)
+	k.Weapon, err = factory.GetWeaponFactorySingleInstance().GetWeapon(w)
 	return
 }
 
@@ -40,4 +41,8 @@ func (k KnightBuilder) SetRole(s string) {
 
 func (k KnightBuilder) GetName() string {
 	return k.GetName()
+}
+
+func (k *KnightBuilder) SetWeapon(weapon factory.IWeapon) {
+	k.Weapon = weapon
 }

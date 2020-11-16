@@ -8,6 +8,7 @@ type MagicianBuilder struct {
 	Role   string
 	Weapon factory.IWeapon
 	Name   string
+	Queen  QueenBuilder
 }
 
 func NewMagicianBuilder() *MagicianBuilder {
@@ -23,7 +24,7 @@ func (m MagicianBuilder) GetFighter() Fighter {
 }
 
 func (m *MagicianBuilder) GetWeapon(w string) (err error) {
-	m.Weapon, err = factory.GetWeapon(w)
+	m.Weapon, err = factory.GetWeaponFactorySingleInstance().GetWeapon(w)
 	return
 }
 
@@ -41,4 +42,8 @@ func (m *MagicianBuilder) SetName(s string) {
 
 func (m *MagicianBuilder) GetName() string {
 	return m.Name
+}
+
+func (m *MagicianBuilder) SetWeapon(weapon factory.IWeapon) {
+	m.Weapon = weapon
 }
