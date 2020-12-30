@@ -4,6 +4,10 @@ type Spear struct {
 	Weapon
 }
 
+func (s Spear) CreateWeapon() (Weapon IWeapon) {
+	return NewSpear()
+}
+
 func NewSpear() IWeapon {
 	return &Spear{
 		Weapon{
