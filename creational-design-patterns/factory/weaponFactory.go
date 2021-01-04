@@ -1,7 +1,6 @@
 package factory
 
 import (
-	"DesignPatterns/behavioral-design-patterns/strategy"
 	"fmt"
 )
 
@@ -16,10 +15,7 @@ type WeaponFactory struct {
 }
 
 func (wf *WeaponFactory) GetWeapon(weaponType string) (IWeapon, error) {
-	if commandStrategy, exists := strategy.Strategies[weaponType]; exists {
-		return commandStrategy.CreateWeapon(), nil
-	}
-	/*if weaponType == "sword" {
+	if weaponType == "sword" {
 		wf.WeaponFactory[weaponType] = NewSword()
 		return NewSword(), nil
 	}
@@ -42,7 +38,7 @@ func (wf *WeaponFactory) GetWeapon(weaponType string) (IWeapon, error) {
 	if weaponType == "bowandarrow" {
 		wf.WeaponFactory[weaponType] = NewBowAndArrow()
 		return NewBowAndArrow(), nil
-	}*/
+	}
 
 	return nil, fmt.Errorf("wrong weapon type")
 }

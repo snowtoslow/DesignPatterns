@@ -1,6 +1,7 @@
 package main
 
 import (
+	"DesignPatterns/behavioral-design-patterns/memento"
 	"DesignPatterns/creational-design-patterns/builder"
 	"DesignPatterns/creational-design-patterns/factory"
 	"DesignPatterns/structurale-design-patterns/adapter"
@@ -14,6 +15,16 @@ func main() {
 	newPlayerKing := builder.NewPlayer(kingBuilder)
 	fighter := newPlayerKing.BuildFighter("Arthur", "King", "sword")
 	log.Printf("King weapon power before decorate: %d", fighter.Weapon.GetPower())
+
+	caretaker := &memento.CareTaker{
+		MementoArray: make([]*memento.Memento, 0),
+	}
+
+	originator := &memento.Originator{
+		State: fighter.Weapon.GetName(),
+	}
+
+	caretaker.AddMemento(originator.CreateMemento())
 
 	// DECORATOR EXAMPLE!
 	kingDragonStealSword := &decorator.DragonStealDecorator{
@@ -46,5 +57,8 @@ func main() {
 	/*for k,v := range weaponFactoryInstance.WeaponFactory{
 		log.Println(k,v)
 	}*/
+
+	//here is the memento!
+	log.Println(caretaker.GetMenento(0))
 
 }

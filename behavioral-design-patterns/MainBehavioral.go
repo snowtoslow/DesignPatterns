@@ -2,14 +2,16 @@ package main
 
 import (
 	"DesignPatterns/behavioral-design-patterns/strategy"
+	"log"
 )
 
 func main() {
 
-	v := "king"
+	v := "sword"
 
 	if commandStrategy, exists := strategy.Strategies[v]; exists {
-		commandStrategy.CreateWeapon()
+		//to demonstrate strategy by an input of sword
+		log.Println(commandStrategy.CreateWeapon())
 	}
 
 }

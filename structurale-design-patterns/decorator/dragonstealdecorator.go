@@ -8,4 +8,6 @@ type DragonStealDecorator struct {
 
 func (dragonStealDecorator *DragonStealDecorator) DecorateWeapon() {
 	dragonStealDecorator.Weapon.SetPower(dragonStealDecorator.Weapon.GetPower() + 30)
+	dragonStealDecorator.Weapon.SetName(dragonStealDecorator.Weapon.GetName() + " decorated with dragon steal")
+
 }

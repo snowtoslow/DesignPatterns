@@ -8,4 +8,5 @@ type ManaDecorator struct {
 
 func (manaDecorator *ManaDecorator) DecorateWeapon() {
 	manaDecorator.Weapon.SetPower(manaDecorator.Weapon.GetPower() + 10)
+	manaDecorator.Weapon.SetName(manaDecorator.Weapon.GetName() + " decorated with mana")
 }
